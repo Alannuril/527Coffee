@@ -32,14 +32,20 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {["Menu", "Facilities", "Events", "Gallery", "Location"].map(
+              {[
+                { name: "Menu", href: "/menu" },
+                { name: "Facilities", href: "#facilities" },
+                { name: "Events", href: "#events" },
+                { name: "Gallery", href: "#gallery" },
+                { name: "Location", href: "#location" },
+              ].map(
                 (link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <a
-                      href={`#${link.toLowerCase()}`}
+                      href={link.href}
                       className="text-sm text-gray-300 hover:text-sage-light transition-colors"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 )

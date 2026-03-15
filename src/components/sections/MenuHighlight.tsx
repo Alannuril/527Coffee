@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 
 interface MenuItem {
@@ -74,9 +75,11 @@ export default function MenuHighlight() {
               designed to perfection for your daily dose of happiness.
             </p>
           </div>
-          <Button variant="outline" className="shrink-0 self-start md:self-auto hidden md:flex">
-            View Full Menu
-          </Button>
+          <Link href="/menu" className="shrink-0 self-start md:self-auto hidden md:flex">
+            <Button variant="outline">
+              View Full Menu
+            </Button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
@@ -130,9 +133,11 @@ export default function MenuHighlight() {
         </div>
         
         <div className="mt-12 text-center md:hidden">
+          <Link href="/menu">
             <Button variant="outline" className="w-full">
               View Full Menu
             </Button>
+          </Link>
         </div>
       </div>
     </section>

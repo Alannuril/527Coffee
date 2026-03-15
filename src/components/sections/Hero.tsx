@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Button } from "../ui/Button";
 
 export default function Hero() {
@@ -47,9 +48,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button variant="primary" size="lg" className="w-full sm:w-auto">
-            View Menu
-          </Button>
+          <Link href="/menu" className="w-full sm:w-auto">
+            <Button variant="primary" size="lg" className="w-full">
+              View Menu
+            </Button>
+          </Link>
           <Button
             variant="outline"
             size="lg"

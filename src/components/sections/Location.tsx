@@ -1,8 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "../ui/Button";
+
+// Dynamically import the Leaflet map to avoid SSR issues
+const CafeMap = dynamic(() => import("../map/CafeMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-3xl">
+      <div className="flex flex-col items-center gap-3 text-gray-400">
+        <MapPin size={32} className="animate-bounce" />
+        <span className="text-sm">Loading map…</span>
+      </div>
+    </div>
+  ),
+});
+
+const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/GDKVC4sJcMr9kYFj8";
 
 export default function Location() {
   return (
@@ -68,37 +84,28 @@ export default function Location() {
               </div>
 
               <div className="mt-10">
-                <Button variant="primary" className="w-full sm:w-auto">
-                  Get Directions
-                </Button>
+                <a
+                  href={GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="primary" className="w-full sm:w-auto">
+                    Get Directions
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </div>
 
-          {/* Map Image Section (Placeholder for actual Google Maps embed or custom map) */}
+          {/* Interactive Map Section */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:w-2/3 h-[400px] lg:h-[600px] rounded-3xl overflow-hidden bg-gray-100 relative shadow-sm"
+            className="lg:w-2/3 h-[400px] lg:h-[600px] rounded-3xl overflow-hidden bg-gray-100 relative shadow-sm z-10"
           >
-            {/* Using a static placeholder map image for aesthetics instead of an embed that might break the design */}
-            <img 
-              src="/images/misc/location.jpg" 
-              alt="Map location overview" 
-              className="w-full h-full object-cover"
-            />
-            {/* Map Pin overlay */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-              <div className="bg-white p-4 rounded-xl shadow-xl mb-4 text-center max-w-[200px]">
-                <h4 className="font-heading font-bold text-coffee text-lg">527 Coffee</h4>
-                <p className="text-xs text-gray-500 mt-1">Jl. Maulana Yusuf</p>
-              </div>
-              <div className="w-12 h-12 bg-sage rounded-full flex items-center justify-center text-white shadow-lg shadow-sage/40 animate-bounce">
-                <MapPin size={24} fill="currentColor" />
-              </div>
-            </div>
+            <CafeMap />
           </motion.div>
 
         </div>
