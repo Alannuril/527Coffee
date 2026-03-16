@@ -5,6 +5,8 @@ export interface MenuItem {
   category: string;
   image: string;
   badge?: "Best Seller" | "New" | "Spicy";
+  description?: string;
+  images?: string[];
 }
 
 export const categories = [
@@ -27,6 +29,12 @@ export const menuItems: MenuItem[] = [
     category: "Coffee",
     image: "/images/menu/1.jpg",
     badge: "Best Seller",
+    description: "Our signature iced coffee milk, naturally sweetened with premium palm sugar for a perfect balance of bold espresso and creamy texture.",
+    images: [
+      "/images/menu/1.jpg",
+      "/images/menu/espresso.jpg",
+      "/images/menu/cafe-latte.jpg"
+    ]
   },
   {
     id: "2",
@@ -35,6 +43,11 @@ export const menuItems: MenuItem[] = [
     category: "Coffee",
     image: "/images/menu/2.jpg",
     badge: "New",
+    description: "A rich and nutty espresso blend infused with real pistachio paste and topped with light crema.",
+    images: [
+      "/images/menu/2.jpg",
+      "/images/menu/cappuccino.jpg"
+    ]
   },
   {
     id: "4",
@@ -113,6 +126,11 @@ export const menuItems: MenuItem[] = [
     category: "Main Dishes",
     image: "/images/menu/3.jpg",
     badge: "Spicy",
+    description: "A savory and spicy mixed rice dish loaded with sausage, meatballs, and fresh vegetables, stir-fried to perfection.",
+    images: [
+      "/images/menu/3.jpg",
+      "/images/menu/beef-burger.jpg"
+    ]
   },
   {
     id: "6",

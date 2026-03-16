@@ -84,51 +84,55 @@ export default function MenuHighlight() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {menuItems.map((item, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              key={item.id}
-              className="group cursor-pointer"
-            >
-              {/* Image Container */}
-              <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-2xl bg-off-white">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                
-                {/* Badge */}
-                {item.badge && (
-                  <div className="absolute top-4 left-4 bg-sage text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm">
-                    {item.badge}
-                  </div>
-                )}
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-coffee-dark/0 group-hover:bg-coffee-dark/10 transition-colors duration-300" />
-              </div>
+            <Link href={`/menu/${item.id}`} key={item.id} className="block">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group cursor-pointer h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col"
+              >
+                {/* Image Container */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-off-white">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  
+                  {/* Badge */}
+                  {item.badge && (
+                    <div className="absolute top-4 left-4 bg-sage text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md z-10">
+                      {item.badge}
+                    </div>
+                  )}
+                  
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-coffee-dark/0 group-hover:bg-coffee-dark/5 transition-colors duration-300" />
+                </div>
 
-              {/* Content */}
-              <div>
-                <div className="flex justify-between items-start mb-2 gap-4">
-                  <h3 className="text-xl font-semibold text-coffee font-heading leading-tight group-hover:text-sage transition-colors">
-                    {item.name}
-                  </h3>
-                  <span className="text-sage font-semibold shrink-0">
-                    {item.price}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">{item.category}</span>
-                  <div className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-sm font-medium text-coffee">
-                    Order Now &rarr;
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-3 gap-4">
+                    <h3 className="text-xl font-bold text-coffee font-heading leading-tight group-hover:text-sage transition-colors">
+                      {item.name}
+                    </h3>
+                    <span className="text-sage font-bold text-lg shrink-0">
+                      {item.price}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">
+                      {item.category}
+                    </span>
+                    <div className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-sm font-semibold text-sage flex items-center gap-2">
+                      Order Now <span>&rarr;</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
         

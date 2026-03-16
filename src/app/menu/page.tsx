@@ -102,52 +102,56 @@ export default function MenuPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.35, delay: index * 0.04 }}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
                 >
-                  {/* Image */}
-                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
+                  <Link href={`/menu/${item.id}`} className="flex flex-col h-full grow">
+                    {/* Image */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                      />
 
-                    {/* Badge */}
-                    {item.badge && (
-                      <div
-                        className={`absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm ${
-                          item.badge === "Spicy"
-                            ? "bg-red-500/90"
-                            : item.badge === "New"
-                            ? "bg-amber-500/90"
-                            : "bg-sage"
-                        }`}
-                      >
-                        {item.badge}
-                      </div>
-                    )}
+                      {/* Badge */}
+                      {item.badge && (
+                        <div
+                          className={`absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm ${
+                            item.badge === "Spicy"
+                              ? "bg-red-500/90"
+                              : item.badge === "New"
+                              ? "bg-amber-500/90"
+                              : "bg-sage"
+                          }`}
+                        >
+                          {item.badge}
+                        </div>
+                      )}
 
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-coffee-dark/0 group-hover:bg-coffee-dark/10 transition-colors duration-300" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <span className="text-xs font-medium text-sage uppercase tracking-wider">
-                      {item.category}
-                    </span>
-                    <h3 className="text-lg font-semibold text-coffee font-heading mt-1 mb-3 leading-snug group-hover:text-sage transition-colors">
-                      {item.name}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sage font-bold text-lg">
-                        {item.price}
-                      </span>
-                      <span className="opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-sm font-medium text-coffee">
-                        Order &rarr;
-                      </span>
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-coffee-dark/0 group-hover:bg-coffee-dark/10 transition-colors duration-300" />
                     </div>
-                  </div>
+
+                    {/* Content */}
+                    <div className="p-5 flex flex-col grow justify-between">
+                      <div>
+                        <span className="text-xs font-medium text-sage uppercase tracking-wider">
+                          {item.category}
+                        </span>
+                        <h3 className="text-lg font-semibold text-coffee font-heading mt-1 mb-3 leading-snug group-hover:text-sage transition-colors">
+                          {item.name}
+                        </h3>
+                      </div>
+                      <div className="flex items-center justify-between mt-auto">
+                        <span className="text-sage font-bold text-lg">
+                          {item.price}
+                        </span>
+                        <span className="opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-sm font-medium text-coffee">
+                          Order &rarr;
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
