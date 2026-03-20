@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "../ui/Button";
+import ReservationModal from "../ui/ReservationModal";
 
 export default function Hero() {
+  const [isReservationOpen, setIsReservationOpen] = useState(false);
+
   return (
     <section
       id="home"
@@ -57,6 +61,7 @@ export default function Hero() {
             variant="outline"
             size="lg"
             className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-coffee"
+            onClick={() => setIsReservationOpen(true)}
           >
             Reserve a Table
           </Button>
@@ -78,6 +83,11 @@ export default function Hero() {
           />
         </div>
       </motion.div>
+
+      <ReservationModal
+        isOpen={isReservationOpen}
+        onClose={() => setIsReservationOpen(false)}
+      />
     </section>
   );
 }

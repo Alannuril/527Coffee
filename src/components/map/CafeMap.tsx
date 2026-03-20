@@ -6,8 +6,8 @@ import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 
 // 527 Coffee coordinates (Jl. Maulana Yusuf, Cimuncang, Serang, Banten)
-const CAFE_LAT = -6.1143;
-const CAFE_LNG = 106.1522;
+const CAFE_LAT = -6.115688072278816;
+const CAFE_LNG = 106.15790843783871;
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/GDKVC4sJcMr9kYFj8";
 
 // Custom marker icon using Leaflet's default marker assets from CDN
